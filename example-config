@@ -1,0 +1,31 @@
+{
+    "log": "",
+    "block": "error 403 \"Forbidden\"",
+    "services": [
+        {
+            "id": "<service-id>",
+            "type": "<recv, none>",
+            "snippet_name": "<some_custom_name>",
+            "priority": "10",
+            "options": {
+                "shield_only": false
+            }
+        }
+    ],
+    "lists": [
+        {
+            "name": "<some_unique_name>",
+            "type": "<allow, geo, block, temp, var, combo>",
+            "match": "<exact, regexp>",
+            "block_length": 600,
+            "variable": "<req.whatever>",
+            "action_log": true,
+            "action_block": true,
+            "action_none": false,
+            "items": [
+                "<item1>",
+                "<item2>"
+            ]
+        }
+    ]
+}
