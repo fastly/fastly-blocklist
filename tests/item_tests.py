@@ -1,5 +1,5 @@
 '''
-Test managing list items with lib.Items()
+Test managing list items with lib Items()
 '''
 
 import unittest
@@ -8,12 +8,12 @@ import os
 import argparse
 import time
 
-import lib
+from lib import Environment, Lists, Items
 
 
 class ItemTests(unittest.TestCase):
     '''
-    Test managing list items with lib.Items()
+    Test managing list items with Items()
     '''
 
     def setUp(self):
@@ -61,14 +61,14 @@ class ItemTests(unittest.TestCase):
         self.args.file = None
 
         # create a new config file
-        env = lib.Environment(self.args)
-        lib.Lists(self.args, env)
+        env = Environment(self.args)
+        Lists(self.args, env)
 
         with self.assertRaisesRegex(
                 SystemExit,
                 "add requires list items"
             ):
-            lib.Items(self.args, env)
+            Items(self.args, env)
 
     def test_add_geo(self):
         '''
@@ -92,9 +92,9 @@ class ItemTests(unittest.TestCase):
         self.args.file = None
 
         # create a new config file
-        env = lib.Environment(self.args)
-        lib.Lists(self.args, env)
-        lib.Items(self.args, env)
+        env = Environment(self.args)
+        Lists(self.args, env)
+        Items(self.args, env)
 
         self.assertEqual(
             env.config['lists'][0]['items'][0]['US'],
@@ -126,9 +126,9 @@ class ItemTests(unittest.TestCase):
         self.args.file = 'tests.items'
 
         # create a new config file
-        env = lib.Environment(self.args)
-        lib.Lists(self.args, env)
-        lib.Items(self.args, env)
+        env = Environment(self.args)
+        Lists(self.args, env)
+        Items(self.args, env)
 
         self.assertEqual(
             len(env.config['lists'][0]['items']),
@@ -157,9 +157,9 @@ class ItemTests(unittest.TestCase):
         self.args.file = None
 
         # create a new config file
-        env = lib.Environment(self.args)
-        lib.Lists(self.args, env)
-        lib.Items(self.args, env)
+        env = Environment(self.args)
+        Lists(self.args, env)
+        Items(self.args, env)
 
         self.assertFalse(env.config['lists'][0]['items'])
 
@@ -185,14 +185,14 @@ class ItemTests(unittest.TestCase):
         self.args.file = 'tests.items'
 
         # create new environment
-        env = lib.Environment(self.args)
-        lib.Lists(self.args, env)
+        env = Environment(self.args)
+        Lists(self.args, env)
 
         with self.assertRaisesRegex(
                 SystemExit,
                 "could not read items from file"
             ):
-            lib.Items(self.args, env)
+            Items(self.args, env)
 
     def test_add_geo_duplicate(self):
         '''
@@ -216,13 +216,13 @@ class ItemTests(unittest.TestCase):
         self.args.file = None
 
         # create a new environment
-        env = lib.Environment(self.args)
-        lib.Lists(self.args, env)
-        lib.Items(self.args, env)
+        env = Environment(self.args)
+        Lists(self.args, env)
+        Items(self.args, env)
 
         self.args.init = False
         self.args.new = False
-        lib.Items(self.args, env)
+        Items(self.args, env)
 
         self.assertEqual(
             len(env.config['lists'][0]['items']),
@@ -251,9 +251,9 @@ class ItemTests(unittest.TestCase):
         self.args.file = None
 
         # create a new environment
-        env = lib.Environment(self.args)
-        lib.Lists(self.args, env)
-        lib.Items(self.args, env)
+        env = Environment(self.args)
+        Lists(self.args, env)
+        Items(self.args, env)
 
         self.assertEqual(
             env.config['lists'][0]['items'][0],
@@ -282,9 +282,9 @@ class ItemTests(unittest.TestCase):
         self.args.file = None
 
         # create a new environment
-        env = lib.Environment(self.args)
-        lib.Lists(self.args, env)
-        lib.Items(self.args, env)
+        env = Environment(self.args)
+        Lists(self.args, env)
+        Items(self.args, env)
 
         self.assertFalse(env.config['lists'][0]['items'])
 
@@ -310,13 +310,13 @@ class ItemTests(unittest.TestCase):
         self.args.file = None
 
         # create a new environment
-        env = lib.Environment(self.args)
-        lib.Lists(self.args, env)
-        lib.Items(self.args, env)
+        env = Environment(self.args)
+        Lists(self.args, env)
+        Items(self.args, env)
 
         self.args.init = False
         self.args.new = False
-        lib.Items(self.args, env)
+        Items(self.args, env)
 
         self.assertEqual(
             len(env.config['lists'][0]['items']),
@@ -345,12 +345,12 @@ class ItemTests(unittest.TestCase):
         self.args.file = None
 
         # create a new environment
-        env = lib.Environment(self.args)
-        lib.Lists(self.args, env)
-        lib.Items(self.args, env)
+        env = Environment(self.args)
+        Lists(self.args, env)
+        Items(self.args, env)
 
         expiration_time = int(time.time()) + self.args.block_length
-        lib.Items(self.args, env)
+        Items(self.args, env)
 
         self.assertTrue(env.config['lists'][0]['items'][0]['10.0.0.1'])
         self.assertEqual(
@@ -380,9 +380,9 @@ class ItemTests(unittest.TestCase):
         self.args.file = None
 
         # create a new environment
-        env = lib.Environment(self.args)
-        lib.Lists(self.args, env)
-        lib.Items(self.args, env)
+        env = Environment(self.args)
+        Lists(self.args, env)
+        Items(self.args, env)
 
         self.assertFalse(env.config['lists'][0]['items'])
 
@@ -408,9 +408,9 @@ class ItemTests(unittest.TestCase):
         self.args.file = None
 
         # create a new environment
-        env = lib.Environment(self.args)
-        lib.Lists(self.args, env)
-        lib.Items(self.args, env)
+        env = Environment(self.args)
+        Lists(self.args, env)
+        Items(self.args, env)
 
         self.assertEqual(
             env.config['lists'][0]['items'][0]['ABC'],
@@ -439,15 +439,15 @@ class ItemTests(unittest.TestCase):
         self.args.file = None
 
         # create a new environment
-        env = lib.Environment(self.args)
-        lib.Lists(self.args, env)
-        lib.Items(self.args, env)
+        env = Environment(self.args)
+        Lists(self.args, env)
+        Items(self.args, env)
 
         self.args.list = ['COMBO']
         self.args.type = 'combo'
         self.args.item = ['LIST1', 'LIST2']
-        lib.Lists(self.args, env)
-        lib.Items(self.args, env)
+        Lists(self.args, env)
+        Items(self.args, env)
 
         self.assertEqual(
             len(env.config['lists'][2]['items']),
@@ -476,15 +476,15 @@ class ItemTests(unittest.TestCase):
         self.args.file = None
 
         # create a new environment
-        env = lib.Environment(self.args)
-        lib.Lists(self.args, env)
-        lib.Items(self.args, env)
+        env = Environment(self.args)
+        Lists(self.args, env)
+        Items(self.args, env)
 
         self.args.list = ['COMBO']
         self.args.type = 'combo'
         self.args.item = ['CALM', 'DOWN']
-        lib.Lists(self.args, env)
-        lib.Items(self.args, env)
+        Lists(self.args, env)
+        Items(self.args, env)
 
         self.assertFalse(env.config['lists'][2]['items'])
 
@@ -510,14 +510,14 @@ class ItemTests(unittest.TestCase):
         self.args.file = None
 
         # create a new environment
-        env = lib.Environment(self.args)
-        lib.Lists(self.args, env)
+        env = Environment(self.args)
+        Lists(self.args, env)
 
         with self.assertRaisesRegex(
                 SystemExit,
                 "remove requires list items"
             ):
-            lib.Items(self.args, env)
+            Items(self.args, env)
 
     def test_remove_geo(self):
         '''
@@ -541,13 +541,13 @@ class ItemTests(unittest.TestCase):
         self.args.file = None
 
         # create a new config file
-        env = lib.Environment(self.args)
-        lib.Lists(self.args, env)
-        lib.Items(self.args, env)
+        env = Environment(self.args)
+        Lists(self.args, env)
+        Items(self.args, env)
 
         self.args.add = False
         self.args.remove = True
-        lib.Items(self.args, env)
+        Items(self.args, env)
 
         self.assertFalse(env.config['lists'][0]['items'])
 
@@ -573,14 +573,14 @@ class ItemTests(unittest.TestCase):
         self.args.file = None
 
         # create a new config file
-        env = lib.Environment(self.args)
-        lib.Lists(self.args, env)
-        lib.Items(self.args, env)
+        env = Environment(self.args)
+        Lists(self.args, env)
+        Items(self.args, env)
 
         self.args.add = False
         self.args.remove = True
         self.args.item = ['United States of America']
-        lib.Items(self.args, env)
+        Items(self.args, env)
 
         self.assertTrue(env.config['lists'][0]['items'])
 
@@ -606,13 +606,13 @@ class ItemTests(unittest.TestCase):
         self.args.file = None
 
         # create a new environment
-        env = lib.Environment(self.args)
-        lib.Lists(self.args, env)
-        lib.Items(self.args, env)
+        env = Environment(self.args)
+        Lists(self.args, env)
+        Items(self.args, env)
 
         self.args.add = False
         self.args.remove = True
-        lib.Items(self.args, env)
+        Items(self.args, env)
 
         self.assertFalse(env.config['lists'][0]['items'])
 
@@ -638,14 +638,14 @@ class ItemTests(unittest.TestCase):
         self.args.file = None
 
         # create a new environment
-        env = lib.Environment(self.args)
-        lib.Lists(self.args, env)
-        lib.Items(self.args, env)
+        env = Environment(self.args)
+        Lists(self.args, env)
+        Items(self.args, env)
 
         self.args.add = False
         self.args.remove = True
         self.args.item = ['127.0.0.1']
-        lib.Items(self.args, env)
+        Items(self.args, env)
 
         self.assertTrue(env.config['lists'][0]['items'])
 
@@ -671,9 +671,9 @@ class ItemTests(unittest.TestCase):
         self.args.file = None
 
         # create a new environment
-        env = lib.Environment(self.args)
-        lib.Lists(self.args, env)
-        lib.Items(self.args, env)
+        env = Environment(self.args)
+        Lists(self.args, env)
+        Items(self.args, env)
 
         force_expiration_time = int(time.time()) - self.args.block_length
         env.config['lists'][0]['items'][0]['10.0.0.1'] = force_expiration_time
@@ -681,7 +681,7 @@ class ItemTests(unittest.TestCase):
         self.args.add = False
         self.args.list = []
         self.args.clean = True
-        lib.Items(self.args, env)
+        Items(self.args, env)
 
         self.assertFalse(env.config['lists'][0]['items'])
 
@@ -707,16 +707,16 @@ class ItemTests(unittest.TestCase):
         self.args.file = None
 
         # create a new environment
-        env = lib.Environment(self.args)
-        lib.Lists(self.args, env)
-        lib.Items(self.args, env)
+        env = Environment(self.args)
+        Lists(self.args, env)
+        Items(self.args, env)
 
         force_expiration_time = int(time.time()) - self.args.block_length
         env.config['lists'][0]['items'][0]['10.0.0.1'] = force_expiration_time
 
         self.args.add = False
         self.args.clean = True
-        lib.Items(self.args, env)
+        Items(self.args, env)
 
         self.assertFalse(env.config['lists'][0]['items'])
 
@@ -742,14 +742,14 @@ class ItemTests(unittest.TestCase):
         self.args.file = None
 
         # create a new environment
-        env = lib.Environment(self.args)
-        lib.Lists(self.args, env)
-        lib.Items(self.args, env)
+        env = Environment(self.args)
+        Lists(self.args, env)
+        Items(self.args, env)
 
         self.args.add = False
         self.args.list = []
         self.args.removeall = True
-        lib.Items(self.args, env)
+        Items(self.args, env)
 
         self.assertFalse(env.config['lists'][0]['items'])
 
@@ -775,13 +775,13 @@ class ItemTests(unittest.TestCase):
         self.args.file = None
 
         # create a new environment
-        env = lib.Environment(self.args)
-        lib.Lists(self.args, env)
-        lib.Items(self.args, env)
+        env = Environment(self.args)
+        Lists(self.args, env)
+        Items(self.args, env)
 
         self.args.add = False
         self.args.removeall = True
-        lib.Items(self.args, env)
+        Items(self.args, env)
 
         self.assertFalse(env.config['lists'][0]['items'])
 

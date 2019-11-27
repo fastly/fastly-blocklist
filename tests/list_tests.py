@@ -1,5 +1,5 @@
 '''
-Test list management in lib.Lists()
+Test list management in lib Lists()
 '''
 
 import unittest
@@ -7,12 +7,12 @@ import unittest
 import os
 import argparse
 
-import lib
+from lib import Environment, Lists
 
 
 class ListTests(unittest.TestCase):
     '''
-    Test list management in lib.Lists()
+    Test list management in Lists()
     '''
 
     def setUp(self):
@@ -52,10 +52,10 @@ class ListTests(unittest.TestCase):
         self.args.block_length = None
 
         # create a new environment
-        env = lib.Environment(self.args)
+        env = Environment(self.args)
 
         # create a new list
-        lib.Lists(self.args, env)
+        Lists(self.args, env)
 
         self.assertEqual(
             len(env.config['lists']),
@@ -98,10 +98,10 @@ class ListTests(unittest.TestCase):
         self.args.block_length = None
 
         # create a new environment
-        env = lib.Environment(self.args)
+        env = Environment(self.args)
 
         # create a new list
-        lib.Lists(self.args, env)
+        Lists(self.args, env)
 
         self.assertEqual(
             len(env.config['lists']),
@@ -143,10 +143,10 @@ class ListTests(unittest.TestCase):
         self.args.block_length = None
 
         # create a new environment
-        env = lib.Environment(self.args)
+        env = Environment(self.args)
 
         # create a new list
-        lib.Lists(self.args, env)
+        Lists(self.args, env)
 
         self.assertEqual(
             len(env.config['lists']),
@@ -184,13 +184,13 @@ class ListTests(unittest.TestCase):
         self.args.block_length = None
 
         # create a new environment
-        env = lib.Environment(self.args)
+        env = Environment(self.args)
 
         with self.assertRaisesRegex(
                 SystemExit,
                 r"no list name\(s\) defined"
         ):
-            lib.Lists(self.args, env)
+            Lists(self.args, env)
 
     def test_new_list_var(self):
         '''
@@ -207,8 +207,8 @@ class ListTests(unittest.TestCase):
         self.args.block_length = None
 
         # create a new environment
-        env = lib.Environment(self.args)
-        lib.Lists(self.args, env)
+        env = Environment(self.args)
+        Lists(self.args, env)
 
         self.assertEqual(
             len(env.config['lists']),
@@ -242,13 +242,13 @@ class ListTests(unittest.TestCase):
         self.args.block_length = None
 
         # create a new environment
-        env = lib.Environment(self.args)
+        env = Environment(self.args)
 
         with self.assertRaisesRegex(
                 SystemExit,
                 "no list variable defined"
         ):
-            lib.Lists(self.args, env)
+            Lists(self.args, env)
 
     def test_new_list_temp(self):
         '''
@@ -265,8 +265,8 @@ class ListTests(unittest.TestCase):
         self.args.block_length = 600
 
         # create a new environment
-        env = lib.Environment(self.args)
-        lib.Lists(self.args, env)
+        env = Environment(self.args)
+        Lists(self.args, env)
 
         self.assertEqual(
             len(env.config['lists']),
@@ -296,13 +296,13 @@ class ListTests(unittest.TestCase):
         self.args.block_length = None
 
         # create a new environment
-        env = lib.Environment(self.args)
+        env = Environment(self.args)
 
         with self.assertRaisesRegex(
                 SystemExit,
                 "no list block_length defined"
         ):
-            lib.Lists(self.args, env)
+            Lists(self.args, env)
 
     def test_delete_list(self):
         '''
@@ -319,13 +319,13 @@ class ListTests(unittest.TestCase):
         self.args.block_length = None
 
         # create a new environment
-        env = lib.Environment(self.args)
-        lib.Lists(self.args, env)
+        env = Environment(self.args)
+        Lists(self.args, env)
 
         self.args.new = False
         self.args.delete = True
 
-        lib.Lists(self.args, env)
+        Lists(self.args, env)
 
         self.assertFalse(env.config['lists'])
 
@@ -344,8 +344,8 @@ class ListTests(unittest.TestCase):
         self.args.block_length = None
 
         # create a new environment
-        env = lib.Environment(self.args)
-        lib.Lists(self.args, env)
+        env = Environment(self.args)
+        Lists(self.args, env)
 
         self.args.new = False
         self.args.delete = True
@@ -355,7 +355,7 @@ class ListTests(unittest.TestCase):
                 SystemExit,
                 r"no list name\(s\) defined"
         ):
-            lib.Lists(self.args, env)
+            Lists(self.args, env)
 
 
 if __name__ == '__main__':

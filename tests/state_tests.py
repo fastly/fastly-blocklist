@@ -1,5 +1,5 @@
 '''
-Test modifying state with lib.State()
+Test modifying state with lib State()
 '''
 
 import unittest
@@ -7,12 +7,12 @@ import unittest
 import os
 import argparse
 
-import lib
+from lib import Environment, State
 
 
 class StateTests(unittest.TestCase):
     '''
-    Test modifying state with lib.State()
+    Test modifying state with State()
     '''
 
     def setUp(self):
@@ -56,20 +56,20 @@ class StateTests(unittest.TestCase):
         '''
 
         # create a new config file
-        lib.Environment(self.args)
+        Environment(self.args)
 
         # load existing config file, change something
         self.args.init = False
         self.args.save = True
         self.args.service = ['SERVICE1', 'SERVICE2']
-        env = lib.Environment(self.args)
+        env = Environment(self.args)
 
-        # save the changes using lib.State().save()
-        lib.State().save(env)
+        # save the changes using State().save()
+        State().save(env)
 
         # load the modified config file
         self.args.service = []
-        env = lib.Environment(self.args)
+        env = Environment(self.args)
 
         # ensure updated config is loaded
         self.assertEqual(
