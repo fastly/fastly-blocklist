@@ -1,5 +1,5 @@
 '''
-Test environment creation with lib.Environment()
+Test environment creation with lib Environment()
 '''
 
 import unittest
@@ -7,12 +7,12 @@ import unittest
 import os
 import argparse
 
-import lib
+from lib import Environment
 
 
 class EnvironmentTests(unittest.TestCase):
     '''
-    Test environment creation with lib.Environment()
+    Test environment creation with Environment()
     '''
 
     def setUp(self):
@@ -43,7 +43,7 @@ class EnvironmentTests(unittest.TestCase):
         '''
 
         # create a new environment
-        env = lib.Environment(self.args)
+        env = Environment(self.args)
 
         # ensure apikey and config are populated
         self.assertEqual(env.apikey, 'APIKEY')
@@ -67,7 +67,7 @@ class EnvironmentTests(unittest.TestCase):
                 SystemExit,
                 "config file exists"
             ):
-            lib.Environment(self.args)
+            Environment(self.args)
 
     def test_init_config_exists_force(self):
         '''
@@ -81,7 +81,7 @@ class EnvironmentTests(unittest.TestCase):
 
         # force create a new config over existing
         self.args.force = True
-        env = lib.Environment(self.args)
+        env = Environment(self.args)
 
         # ensure apikey and config are populated
         self.assertEqual(env.apikey, 'APIKEY')
@@ -95,11 +95,11 @@ class EnvironmentTests(unittest.TestCase):
         '''
 
         # create a new config file
-        lib.Environment(self.args)
+        Environment(self.args)
 
         # load an existing config file
         self.args.init = False
-        env = lib.Environment(self.args)
+        env = Environment(self.args)
 
         # ensure apikey and config are populated
         self.assertEqual(env.apikey, 'APIKEY')
@@ -114,7 +114,7 @@ class EnvironmentTests(unittest.TestCase):
 
         # auto init a config file when one doesn't exist
         self.args.init = False
-        env = lib.Environment(self.args)
+        env = Environment(self.args)
 
         # ensure apikey and config are populated
         self.assertEqual(env.apikey, 'APIKEY')
@@ -128,12 +128,12 @@ class EnvironmentTests(unittest.TestCase):
         '''
 
         # create a new config file
-        lib.Environment(self.args)
+        Environment(self.args)
 
         # load an existing config file and replace services in running config
         self.args.init = False
         self.args.service = ['SERVICE1', 'SERVICE2']
-        env = lib.Environment(self.args)
+        env = Environment(self.args)
 
         # ensure override services are targeted
         self.assertEqual(
@@ -147,16 +147,16 @@ class EnvironmentTests(unittest.TestCase):
         '''
 
         # create a new config file
-        lib.Environment(self.args)
+        Environment(self.args)
 
         # load existing config file, change something, and save
         self.args.init = False
         self.args.service = ['SERVICE1', 'SERVICE2']
-        lib.Environment(self.args).save_config()
+        Environment(self.args).save_config()
 
         # load the modified config file
         self.args.service = []
-        env = lib.Environment(self.args)
+        env = Environment(self.args)
 
         # ensure updated config is loaded
         self.assertEqual(
