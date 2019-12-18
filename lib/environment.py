@@ -136,7 +136,8 @@ class Environment():
                 'snippet_name': f'fastlyblocklist_{snippet_uid}',
                 'priority': '10',
                 'options': {
-                    'shield_only': False
+                    'edge_only': True,
+                    'var_ip': 'client.ip'
                 }
             }
             self.config['services'].append(service)
