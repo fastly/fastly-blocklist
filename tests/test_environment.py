@@ -51,6 +51,20 @@ class EnvironmentTests(unittest.TestCase):
         self.assertFalse(env.config['lists'])
         self.assertEqual(env.config['log'], '')
 
+    def test_init_service_defaults(self):
+        '''
+        ensure service config defaults are set during init
+        '''
+
+        # create a new environment
+        env = Environment(self.args)
+
+        # ensure service defaults
+        self.assertEqual(env.config['services'][0]['type'], 'recv')
+        self.assertEqual(env.config['services'][0]['priority'], '10')
+        self.assertEqual(env.config['services'][0]['options']['edge_only'], True)
+        self.assertEqual(env.config['services'][0]['options']['var_ip'], 'client.ip')
+
     def test_init_config_exists(self):
         '''
         test init of a new config file where another exists
