@@ -88,7 +88,8 @@ class State():
             'type': env.from_remote['snippet']['type'],
             'priority': str(env.from_remote['snippet']['priority']),
             'options': {
-                'shield_only': False
+                'edge_only': True,
+                'var_ip': 'client.ip'
             }
         }
         env.config['services'].append(service)
@@ -229,7 +230,7 @@ class State():
 
         print(f'\tConverting local config to remote.')
 
-        list_prefix = 'blockly_'
+        list_prefix = 'fastlyblocklist_'
 
         log_line = env.config['log']
         block_line = env.config['block']
@@ -315,7 +316,8 @@ class State():
                 env.to_remote['snippet']['name'] = service['snippet_name']
                 env.to_remote['snippet']['type'] = service['type']
                 env.to_remote['snippet']['priority'] = str(service['priority'])
-                shield_only = service['options']['shield_only']
+                edge_only = service['options']['edge_only']
+                var_ip = service['options']['var_ip']
 
         # add vars for 'var' lists
         custom_vars = []
@@ -444,5 +446,6 @@ class State():
             block_line=env.config['block'],
             lists=lists,
             custom_vars=custom_vars,
-            shield_only=shield_only
+            edge_only=edge_only,
+            var_ip=var_ip
         )

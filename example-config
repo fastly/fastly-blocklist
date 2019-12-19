@@ -8,7 +8,8 @@
             "snippet_name": "<some_custom_name>",
             "priority": "10",
             "options": {
-                "shield_only": false
+                "edge_only": true,
+                "var_ip": "client.ip"
             }
         }
     ],
