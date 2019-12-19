@@ -230,7 +230,7 @@ class State():
 
         print(f'\tConverting local config to remote.')
 
-        list_prefix = 'blockly_'
+        list_prefix = 'fastlyblocklist_'
 
         log_line = env.config['log']
         block_line = env.config['block']
