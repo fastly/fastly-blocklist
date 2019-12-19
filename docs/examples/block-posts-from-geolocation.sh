@@ -9,11 +9,11 @@ python fastly-blocklist.py \
     --action none \
     --save
 
-# Add countries to the geo list
+# Add country codes to the geo list
 python fastly-blocklist.py \
     --list no_post_geos \
     --add \
-    --item 'CN','HK','RU','UA' \
+    --item 'IR','KP','SY','SD','CU','VE' \
     --save
 
 # Create a var list of banned HTTP methods
@@ -25,7 +25,7 @@ python fastly-blocklist.py \
     --variable 'req.method' \
     --save
 
-# Add countries to the geo list
+# Add banned methods to the var list
 python fastly-blocklist.py \
     --list geo_banned_methods \
     --add \

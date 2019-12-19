@@ -8,7 +8,7 @@ python fastly-blocklist.py \
     --action block \
     --save
 
-# Add countries to the geo list
+# Add country codes to the geo list
 python fastly-blocklist.py \
     --list embargoed_geos \
     --add \
