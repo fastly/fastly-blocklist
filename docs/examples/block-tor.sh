@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # TOR exit node IPs are published. Get a list with connectivity to Fastly
-fsly_ip='151.101.1.57'
+fsly_ip=$(dig +short global.ssl.fastly.net | head -1)
 tor_ips="https://check.torproject.org/cgi-bin/TorBulkExitList.py?ip=${fsly_ip}"
 
 # Create a temp file to store ips

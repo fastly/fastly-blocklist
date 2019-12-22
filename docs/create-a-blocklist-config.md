@@ -53,8 +53,12 @@ $ cat config.blocklist
         {
             "id": "SERVICEID",
             "type": "recv",
-            "snippet_name": "fastlyblocklist_SERVICEID",
-            "priority": "100"
+            "snippet_name": "fastlyblocklist_RANDOMSTRING",
+            "priority": "10",
+            "options": {
+                "edge_only": true,
+                "var_ip": "client.ip"
+            }
         }
     ],
     "lists": []
@@ -90,10 +94,10 @@ First, determine which IP address you're going to block from accessing your serv
 
 Then, add the IP address to the list `my_block_list` you just created.
 
-`python fastly-blocklist.py --add --list my_block_list --item MYPUBLICIP --save`
+`python fastly-blocklist.py --add --list my_block_list --item MYPUBLICIP --save --verbose`
 
 ```
-$ python fastly-blocklist.py --add --list my_block_list --item MYPUBLICIP --save
+$ python fastly-blocklist.py --add --list my_block_list --item MYPUBLICIP --save --verbose
 
 # fastly-blocklist #
 Configure request blocking for a Fastly service.
@@ -104,6 +108,7 @@ Loading config from file: /home/user/fastly-blocklist/config.blocklist
         Loaded config from file.
 Adding item(s) to list(s)
         Added item: MYPUBLICIP to list: my_block_list
+Added item(s) to list(s)
 Saving running config to file: /home/user/fastly-blocklist/config.blocklist
         Saved config to file: /home/user/fastly-blocklist/config.blocklist
 ```

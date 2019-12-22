@@ -80,7 +80,7 @@ class EnvironmentTests(unittest.TestCase):
         with self.assertRaisesRegex(
                 SystemExit,
                 "config file exists"
-            ):
+                ):
             Environment(self.args)
 
     def test_init_config_exists_force(self):

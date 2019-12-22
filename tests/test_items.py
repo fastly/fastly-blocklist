@@ -67,7 +67,7 @@ class ItemTests(unittest.TestCase):
         with self.assertRaisesRegex(
                 SystemExit,
                 "add requires list items"
-            ):
+                ):
             Items(self.args, env)
 
     def test_add_geo(self):
@@ -191,7 +191,7 @@ class ItemTests(unittest.TestCase):
         with self.assertRaisesRegex(
                 SystemExit,
                 "could not read items from file"
-            ):
+                ):
             Items(self.args, env)
 
     def test_add_geo_duplicate(self):
@@ -516,7 +516,7 @@ class ItemTests(unittest.TestCase):
         with self.assertRaisesRegex(
                 SystemExit,
                 "remove requires list items"
-            ):
+                ):
             Items(self.args, env)
 
     def test_remove_geo(self):

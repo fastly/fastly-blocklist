@@ -32,7 +32,12 @@ class State():
                   )
         print(f'\tSyncing with service: {sync_sid}')
 
-        remote.get_remote_config_service(env, sync_sid)
+        # don't actually call any remote operations if this is a test
+        if env.mock_remote:
+            pass
+        else:
+            remote.get_remote_config_service(env, sync_sid)
+
         self._convert_remote_to_local(env)
 
         print(f'\tService: {sync_sid} synced to running config.')
@@ -50,8 +55,12 @@ class State():
             print(f'\tDeploying config to service: {commit_sid}')
 
             self._convert_local_to_remote(env, commit_sid)
-            remote.get_remote_config_service(env, commit_sid)
 
+            # don't actually call any remote operations if this is a test
+            if env.mock_remote:
+                continue
+
+            remote.get_remote_config_service(env, commit_sid)
             env.to_remote['version'] = env.from_remote['version']
 
             print('\tDeploying config to service.')
@@ -284,8 +293,7 @@ class State():
         for blockly_list in env.config['lists']:
             if blockly_list['type'] in ['geo', 'temp'] \
                 or (blockly_list['type'] == 'var'
-                        and blockly_list['match'] == 'exact'
-                   ):
+                    and blockly_list['match'] == 'exact'):
 
                 list_name = blockly_list['name']
                 dict_name = f'{list_prefix}{list_name}'
@@ -343,14 +351,13 @@ class State():
         }
         for blockly_list in env.config['lists']:
 
-            if blockly_list['type'] in ['allow', 'block', 'geo', 'temp'] \
-                    or (blockly_list['type'] == 'var'
-                            and blockly_list['match'] == 'exact'
-                       ):
-                blockly_list['items'] = []
-
-            list_json = json.dumps(blockly_list)
-            lists['config_block'].append(list_json)
+            # add the list json to config block at the top of the snippet
+            config_block_copy = blockly_list.copy()
+            if config_block_copy['type'] in ['allow', 'block', 'geo', 'temp'] \
+                    or (config_block_copy['type'] == 'var'
+                        and config_block_copy['match'] == 'exact'):
+                config_block_copy['items'] = []
+            lists['config_block'].append(json.dumps(config_block_copy))
 
             # add 'allow' list(s)
             name = blockly_list['name']
@@ -442,8 +449,8 @@ class State():
 
         env.to_remote['snippet']['content'] = vcl.render(
             name=env.to_remote['snippet']['name'],
-            log_line=env.config['log'],
-            block_line=env.config['block'],
+            log_line=log_line,
+            block_line=block_line,
             lists=lists,
             custom_vars=custom_vars,
             edge_only=edge_only,
