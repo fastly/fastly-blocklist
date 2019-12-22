@@ -47,8 +47,12 @@ def main(args):
 
 if __name__ == '__main__':
 
+    version = 'master'
+
     PARSER = ArgumentParser(formatter_class=RawTextHelpFormatter, description=(
-        "\n# fastly-blocklist #\nConfigure request blocking for a Fastly service.\n"))
+            f'\n# fastly-blocklist # version: {version}\n'
+            f'Configure request blocking for a Fastly service.\n'
+    ))
     # Enable verbose mode
     PARSER.add_argument('-v', '--verbose', required=False, action='store_true',
                         help=("Enable verbose mode.")
