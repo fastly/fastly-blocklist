@@ -19,6 +19,9 @@ class Environment():
         Try to initialize our environment, depending on arguments provided.
         '''
 
+        # For state/remote tests
+        self.mock_remote = False
+
         # Set verbosity.
         self.verbose = args.verbose
 

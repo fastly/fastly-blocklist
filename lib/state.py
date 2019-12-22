@@ -32,7 +32,12 @@ class State():
                   )
         print(f'\tSyncing with service: {sync_sid}')
 
-        remote.get_remote_config_service(env, sync_sid)
+        # don't actually call any remote operations if this is a test
+        if env.mock_remote:
+            pass
+        else:
+            remote.get_remote_config_service(env, sync_sid)
+
         self._convert_remote_to_local(env)
 
         print(f'\tService: {sync_sid} synced to running config.')
@@ -50,8 +55,12 @@ class State():
             print(f'\tDeploying config to service: {commit_sid}')
 
             self._convert_local_to_remote(env, commit_sid)
-            remote.get_remote_config_service(env, commit_sid)
 
+            # don't actually call any remote operations if this is a test
+            if env.mock_remote:
+                continue
+
+            remote.get_remote_config_service(env, commit_sid)
             env.to_remote['version'] = env.from_remote['version']
 
             print('\tDeploying config to service.')
