@@ -19,3 +19,7 @@
 1. Block POSTs from a list of geolocations
 
     You can use a `combo` list to combine match conditions from multiple constituent lists. The example in [examples/block-posts-from-geolocation.sh](examples/block-posts-from-geolocation.sh) blocks POST, PUT, and PATCH requests from a list of geolocations.
+
+## Advanced Configuration
+
+1. [Editing blocklist configuration directly](advanced-blocklist-config.md)
