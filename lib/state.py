@@ -343,14 +343,14 @@ class State():
         }
         for blockly_list in env.config['lists']:
 
-            if blockly_list['type'] in ['allow', 'block', 'geo', 'temp'] \
-                    or (blockly_list['type'] == 'var'
-                            and blockly_list['match'] == 'exact'
+            # add the list json to config block at the top of the snippet
+            config_block_copy = blockly_list.copy()
+            if config_block_copy['type'] in ['allow', 'block', 'geo', 'temp'] \
+                    or (config_block_copy['type'] == 'var'
+                            and config_block_copy['match'] == 'exact'
                        ):
-                blockly_list['items'] = []
-
-            list_json = json.dumps(blockly_list)
-            lists['config_block'].append(list_json)
+                config_block_copy['items'] = []
+            lists['config_block'].append(json.dumps(config_block_copy))
 
             # add 'allow' list(s)
             name = blockly_list['name']
