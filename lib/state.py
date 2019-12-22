@@ -293,8 +293,7 @@ class State():
         for blockly_list in env.config['lists']:
             if blockly_list['type'] in ['geo', 'temp'] \
                 or (blockly_list['type'] == 'var'
-                        and blockly_list['match'] == 'exact'
-                   ):
+                    and blockly_list['match'] == 'exact'):
 
                 list_name = blockly_list['name']
                 dict_name = f'{list_prefix}{list_name}'
@@ -356,8 +355,7 @@ class State():
             config_block_copy = blockly_list.copy()
             if config_block_copy['type'] in ['allow', 'block', 'geo', 'temp'] \
                     or (config_block_copy['type'] == 'var'
-                            and config_block_copy['match'] == 'exact'
-                       ):
+                        and config_block_copy['match'] == 'exact'):
                 config_block_copy['items'] = []
             lists['config_block'].append(json.dumps(config_block_copy))
 
@@ -451,8 +449,8 @@ class State():
 
         env.to_remote['snippet']['content'] = vcl.render(
             name=env.to_remote['snippet']['name'],
-            log_line=env.config['log'],
-            block_line=env.config['block'],
+            log_line=log_line,
+            block_line=block_line,
             lists=lists,
             custom_vars=custom_vars,
             edge_only=edge_only,

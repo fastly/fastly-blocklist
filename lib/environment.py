@@ -9,6 +9,7 @@ import string
 import json
 import yaml
 
+
 class Environment():
     '''
     Manage fastly-blocklist configuration environment

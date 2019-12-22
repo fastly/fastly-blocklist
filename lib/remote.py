@@ -265,7 +265,7 @@ class Remote():
                                   f'/snippet',
                                   body=body,
                                   headers=headers
-                                 )
+                                  )
 
             print(f'\t\tAdded new snippet name: {snippet_name}')
 
@@ -449,7 +449,6 @@ class Remote():
         to_acl = []
         from_acl = []
         entries = []
-
 
         # get items for comparison
         for acl in env.from_remote['acls']:

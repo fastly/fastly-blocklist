@@ -8,6 +8,7 @@ import re
 import time
 import ipaddress
 
+
 class Items():
     '''
     Manage list items
@@ -212,7 +213,7 @@ class Items():
                             # validate item for dictionary type lists
                             if blockly_list['type'] in ['geo', 'temp'] \
                                 or (blockly_list['type'] == 'var'
-                                        and blockly_list['match'] == 'exact'):
+                                    and blockly_list['match'] == 'exact'):
 
                                 # _get_dict_item looks up a dict item by key
                                 valid_item, error = self._get_dict_item(
