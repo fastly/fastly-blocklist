@@ -9,8 +9,8 @@ Objectives:
 You'll need an [API token](https://docs.fastly.com/en/guides/using-api-tokens) from a user with at least [`Engineer` permissions](https://docs.fastly.com/en/guides/configuring-user-roles-and-permissions) to your Fastly account.
 
 1. Create a new token on the [API Token Management page](https://manage.fastly.com/account/personal/tokens)
-1. Save the token on your local machine in the file: `~/.fastly`
-    1. The file content should look like: `fastly_token: YOURFASTLYAPITOKEN`
+1. Save the token on your local machine in the file: `~/.fastlyctl_token`
+    1. The file should only contain one thing: your `YOURFASTLYAPITOKEN`.
 
 ## Determine which Fastly Service you'll be targeting
 

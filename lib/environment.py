@@ -7,7 +7,6 @@ from pathlib import Path
 import random
 import string
 import json
-import yaml
 
 
 class Environment():
@@ -40,7 +39,7 @@ class Environment():
         try:
             print(f'Reading API key from: {args.apikey}')
             with open(args.apikey) as file_apikey:
-                self.apikey = (yaml.safe_load(file_apikey))['fastly_token']
+                self.apikey = file_apikey.read().replace('\n', '')
             print(f'\tRead API key.')
         except BaseException:
             exit(f'Error: could not read API key from: {args.apikey}')
