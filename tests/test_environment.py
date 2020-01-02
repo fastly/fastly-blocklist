@@ -17,7 +17,7 @@ class EnvironmentTests(unittest.TestCase):
 
     def setUp(self):
         with open('tests.apikey', 'w') as file_apikey:
-            file_apikey.write('fastly_token: APIKEY')
+            file_apikey.write('MYTESTAPIKEY')
 
         self.args = argparse.Namespace(
             init=True,
@@ -46,7 +46,7 @@ class EnvironmentTests(unittest.TestCase):
         env = Environment(self.args)
 
         # ensure apikey and config are populated
-        self.assertEqual(env.apikey, 'APIKEY')
+        self.assertEqual(env.apikey, 'MYTESTAPIKEY')
         self.assertTrue(env.config['services'])
         self.assertFalse(env.config['lists'])
         self.assertEqual(env.config['log'], '')
@@ -98,7 +98,7 @@ class EnvironmentTests(unittest.TestCase):
         env = Environment(self.args)
 
         # ensure apikey and config are populated
-        self.assertEqual(env.apikey, 'APIKEY')
+        self.assertEqual(env.apikey, 'MYTESTAPIKEY')
         self.assertTrue(env.config['services'])
         self.assertFalse(env.config['lists'])
         self.assertEqual(env.config['log'], '')
@@ -116,7 +116,7 @@ class EnvironmentTests(unittest.TestCase):
         env = Environment(self.args)
 
         # ensure apikey and config are populated
-        self.assertEqual(env.apikey, 'APIKEY')
+        self.assertEqual(env.apikey, 'MYTESTAPIKEY')
         self.assertTrue(env.config['services'])
         self.assertFalse(env.config['lists'])
         self.assertEqual(env.config['log'], '')
@@ -131,7 +131,7 @@ class EnvironmentTests(unittest.TestCase):
         env = Environment(self.args)
 
         # ensure apikey and config are populated
-        self.assertEqual(env.apikey, 'APIKEY')
+        self.assertEqual(env.apikey, 'MYTESTAPIKEY')
         self.assertTrue(env.config['services'])
         self.assertFalse(env.config['lists'])
         self.assertEqual(env.config['log'], '')
