@@ -72,10 +72,10 @@ if __name__ == '__main__':
             "Force config initialization, overwriting existing local config "
             "file."))
     ENVIRONMENT.add_argument(
-        '--apikey', required=False, default='{}/.fastly'.format(
+        '--apikey', required=False, default='{}/.fastlyctl_token'.format(
             Path.home()), type=str, help=(
                 "Location of a file containing Fastly API key/token.\n"
-                "\tDefault: Read from ~/.fastly"))
+                "\tDefault: Read from ~/.fastlyctl_token"))
     ENVIRONMENT.add_argument('--config', required=False,
                              default='{}/config.blocklist'.format(Path.cwd()),
                              type=str,
