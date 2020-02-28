@@ -1,3 +1,6 @@
+![](https://github.com/fastly/fastly-blocklist/workflows/prerelease/badge.svg)
+![](https://github.com/fastly/fastly-blocklist/workflows/master/badge.svg)
+
 # fastly-blocklist
 
 **Configure request blocking for a Fastly service.**
