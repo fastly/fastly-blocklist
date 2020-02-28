@@ -31,7 +31,7 @@ Configure request blocking for a Fastly service.
 
 Creating a new config file: /home/user/fastly-blocklist/config.blocklist
         Created a new config file: /home/user/fastly-blocklist/config.blocklist
-Reading API key from: /home/user/.fastly
+Reading API key from: /home/user/.fastlyctl_token
         Read API key.
 Loading config from file: /home/user/fastly-blocklist/config.blocklist
         Loaded config from file.
@@ -40,7 +40,7 @@ Saving running config to file: /home/user/fastly-blocklist/config.blocklist
         Saved config to file: /home/user/fastly-blocklist/config.blocklist
 ```
 
-You can change the default filename and location with `--config`.
+You can change the default filename and location with `--config path/to/your-config.blocklist`.
 
 Take a look in the `config.blocklist` file generated. You should see your service ID and some additional boilerplate config.
 
@@ -77,7 +77,7 @@ $ python fastly-blocklist.py --new --list my_block_list --type block --action bl
 # fastly-blocklist #
 Configure request blocking for a Fastly service.
 
-Reading API key from: /home/user/.fastly
+Reading API key from: /home/user/.fastlyctl_token
         Read API key.
 Loading config from file: /home/user/fastly-blocklist/config.blocklist
         Loaded config from file.
@@ -102,7 +102,7 @@ $ python fastly-blocklist.py --add --list my_block_list --item MYPUBLICIP --save
 # fastly-blocklist #
 Configure request blocking for a Fastly service.
 
-Reading API key from: /home/user/.fastly
+Reading API key from: /home/user/.fastlyctl_token
         Read API key.
 Loading config from file: /home/user/fastly-blocklist/config.blocklist
         Loaded config from file.

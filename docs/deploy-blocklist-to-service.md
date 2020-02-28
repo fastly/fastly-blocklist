@@ -7,7 +7,7 @@ Objectives:
 
 Deploying fastly-blocklist is as simple as issuing a `--commit`. The local configuration file you created earlier is read, your service checked, then config deployed to the live service.
 
-> Since this is your first deploy, we'll need to create a new version of to service. This process is handled automatically by fastly-blocklist.
+> Since this is your first deploy, we'll need to create a new version of the service. This process is handled automatically by fastly-blocklist.
 
 `python fastly-blocklist.py --commit --save --verbose`
 
@@ -17,7 +17,7 @@ $ python fastly-blocklist.py --commit --save --verbose
 # fastly-blocklist #
 Configure request blocking for a Fastly service.
 
-Reading API key from: /home/user/.fastly
+Reading API key from: /home/user/.fastlyctl_token
         Read API key.
 Loading config from file: /home/user/fastly-blocklist/config.blocklist
         Loaded config from file.
