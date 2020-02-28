@@ -40,7 +40,7 @@ docker build . -t fastly-blocklist:latest
 Run container:
 ```
 $ docker run --rm \
-    -v "${HOME}/.fastly:/root/.fastly:ro" \
+    -v "${HOME}/.fastlyctl_token:/root/.fastlyctl_token:ro" \
     -v "${PWD}/config.blocklist:/fastly-blocklist/config.blocklist" \
     fastly-blocklist:latest --help
 ```
@@ -95,7 +95,7 @@ ENVIRONMENT:
   --init                Create a new fastly-blocklist config.
   --force               Force config initialization, overwriting existing local config file.
   --apikey APIKEY       Location of a file containing Fastly API key/token.
-                            Default: Read from ~/.fastly
+                            Default: Read from ~/.fastlyctl_token
   --config CONFIG       Location of a fastly-blocklist config file.
                             Default: ./config.blocklist
   --service SERVICE     Service(s) to target.

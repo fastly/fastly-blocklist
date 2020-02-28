@@ -9,8 +9,8 @@ Objectives:
 You'll need an [API token](https://docs.fastly.com/en/guides/using-api-tokens) from a user with at least [`Engineer` permissions](https://docs.fastly.com/en/guides/configuring-user-roles-and-permissions) to your Fastly account.
 
 1. Create a new token on the [API Token Management page](https://manage.fastly.com/account/personal/tokens)
-1. Save the token on your local machine in the file: `~/.fastly`
-    1. The file content should look like: `fastly_token: YOURFASTLYAPITOKEN`
+1. Save the token on your local machine in the file: `~/.fastlyctl_token`
+    1. The file should only contain one thing: your `YOURFASTLYAPITOKEN`.
 
 ## Determine which Fastly Service you'll be targeting
 
@@ -31,7 +31,7 @@ Configure request blocking for a Fastly service.
 
 Creating a new config file: /home/user/fastly-blocklist/config.blocklist
         Created a new config file: /home/user/fastly-blocklist/config.blocklist
-Reading API key from: /home/user/.fastly
+Reading API key from: /home/user/.fastlyctl_token
         Read API key.
 Loading config from file: /home/user/fastly-blocklist/config.blocklist
         Loaded config from file.
@@ -40,7 +40,7 @@ Saving running config to file: /home/user/fastly-blocklist/config.blocklist
         Saved config to file: /home/user/fastly-blocklist/config.blocklist
 ```
 
-You can change the default filename and location with `--config`.
+You can change the default filename and location with `--config path/to/your-config.blocklist`.
 
 Take a look in the `config.blocklist` file generated. You should see your service ID and some additional boilerplate config.
 
@@ -77,7 +77,7 @@ $ python fastly-blocklist.py --new --list my_block_list --type block --action bl
 # fastly-blocklist #
 Configure request blocking for a Fastly service.
 
-Reading API key from: /home/user/.fastly
+Reading API key from: /home/user/.fastlyctl_token
         Read API key.
 Loading config from file: /home/user/fastly-blocklist/config.blocklist
         Loaded config from file.
@@ -102,7 +102,7 @@ $ python fastly-blocklist.py --add --list my_block_list --item MYPUBLICIP --save
 # fastly-blocklist #
 Configure request blocking for a Fastly service.
 
-Reading API key from: /home/user/.fastly
+Reading API key from: /home/user/.fastlyctl_token
         Read API key.
 Loading config from file: /home/user/fastly-blocklist/config.blocklist
         Loaded config from file.

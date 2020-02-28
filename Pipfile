@@ -7,7 +7,6 @@ verify_ssl = true
 
 [packages]
 fastly = "*"
-pyyaml = "*"
 ipaddress = "*"
 jinja2 = "*"
 
