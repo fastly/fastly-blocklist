@@ -73,7 +73,7 @@ class StateTests(unittest.TestCase):
                         },
                         {
                             'comment': '',
-                            'subnet': 128,
+                            'subnet': None,
                             'service_id': 'REMOTESERVICEID',
                             'negated': '0',
                             'deleted_at': None,

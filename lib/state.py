@@ -174,20 +174,17 @@ class State():
                 if blockly_list['name'] == list_name:
                     for item in remote_acl['items']:
                         blockly_item = item['ip']
+                        negated = ''
+                        masklen = 32
 
                         if item['negated'] == '1':
-                            blockly_item = '!{}'.format(blockly_item)
+                            negated = '!'
+                        if re.search(r'[a-f:]', item['ip']):
+                            masklen = 128
                         if item['subnet']:
-                            blockly_item = '{}/{}'.format(
-                                blockly_item,
-                                item['subnet']
-                            )
-                        else:
-                            blockly_item = '{}/{}'.format(
-                                blockly_item,
-                                '32'
-                            )
+                            masklen = item['subnet']
 
+                        blockly_item = f'{negated}{blockly_item}/{masklen}'
                         blockly_list['items'].append(blockly_item)
 
                     if env.verbose:
@@ -269,7 +266,7 @@ class State():
                 for item in blockly_list['items']:
 
                     remote_item = {}
-                    remote_match = re.match(r'(!)?([0-9\.a-f:]+)/?([0-9]*)', item)
+                    remote_match = re.match(r'^(!)?([0-9\.a-f:]+)/?([0-9]*)', item)
 
                     remote_item['ip'] = remote_match.group(2)
 
