@@ -269,7 +269,7 @@ class State():
                 for item in blockly_list['items']:
 
                     remote_item = {}
-                    remote_match = re.match(r'(!)?([0-9\.]+)/?([0-9]*)', item)
+                    remote_match = re.match(r'(!)?([0-9\.a-f:]+)/?([0-9]*)', item)
 
                     remote_item['ip'] = remote_match.group(2)
 
