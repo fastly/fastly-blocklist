@@ -229,9 +229,9 @@ class ItemTests(unittest.TestCase):
             1
         )
 
-    def test_add_block(self):
+    def test_add_block_v4(self):
         '''
-        try to add a valid new item to block list
+        try to add a valid IPv4 item to block list
         '''
 
         self.args.new = True
@@ -258,6 +258,37 @@ class ItemTests(unittest.TestCase):
         self.assertEqual(
             env.config['lists'][0]['items'][0],
             '!10.0.0.0/8'
+        )
+
+    def test_add_block_v6(self):
+        '''
+        try to add a valid new IPv6 item to block list
+        '''
+
+        self.args.new = True
+        self.args.delete = False
+        self.args.list = ['a_new_list']
+        self.args.type = 'block'
+        self.args.action = 'block'
+        self.args.match = 'exact'
+        self.args.variable = None
+        self.args.block_length = None
+
+        self.args.add = True
+        self.args.remove = False
+        self.args.clean = False
+        self.args.removeall = False
+        self.args.item = ['2a04:4e42:0010:0000:0000:0000:0000:0313']
+        self.args.file = None
+
+        # create a new environment
+        env = Environment(self.args)
+        Lists(self.args, env)
+        Items(self.args, env)
+
+        self.assertEqual(
+            env.config['lists'][0]['items'][0],
+            '2a04:4e42:10::313/128'
         )
 
     def test_add_block_bad(self):

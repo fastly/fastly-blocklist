@@ -40,7 +40,7 @@ if ({{allow|join(' && ')}}) {
     {% for list in lists.geo %}
     {% if not list.none %}
     # 'geo' list {{list.name}}
-    if (table.lookup({{ list.name }}, client.geo.country_code)) {
+    if (table.contains({{ list.name }}, client.geo.country_code)) {
         {% if list.log %}
         {{ log_line }}
         {% endif %}
@@ -68,7 +68,7 @@ if ({{allow|join(' && ')}}) {
     {% for list in lists.temp %}
     {% if not list.none %}
     # 'temp' list {{list.name}}
-    if (table.lookup({{ list.name }}, var.ip)) {
+    if (table.contains({{ list.name }}, var.ip)) {
         set var.int_block_expiration = std.atoi(
             table.lookup({{ list.name }}, var.ip)
         );
@@ -87,7 +87,7 @@ if ({{allow|join(' && ')}}) {
     {% for list in lists.var_exact %}
     {% if not list.none %}
     # exact 'var' list {{list.name}}
-    if (table.lookup({{ list.name }}, {{ list.variable }})) {
+    if (table.contains({{ list.name }}, {{ list.variable }})) {
         {% if list.log %}
         {{ log_line }}
         {% endif %}
@@ -107,11 +107,11 @@ if ({{allow|join(' && ')}}) {
         {% if child.type == 'block' %}
             {% do combo.append("var.ip ~ %s"|format(child.name)) %}
         {% elif child.type == 'geo' %}
-            {% do combo.append("table.lookup(%s, client.geo.country_code)"|format(child.name)) %}
+            {% do combo.append("table.contains(%s, client.geo.country_code)"|format(child.name)) %}
         {% elif child.type == 'temp' %}
-            {% do combo.append("table.lookup(%s, var.ip)"|format(child.name)) %}
+            {% do combo.append("table.contains(%s, var.ip)"|format(child.name)) %}
         {% elif child.type == 'var' and child.match == 'exact' %}
-            {% do combo.append("table.lookup(%s, %s)"|format(child.name,child.variable)) %}
+            {% do combo.append("table.contains(%s, %s)"|format(child.name,child.variable)) %}
         {% elif child.type == 'var' and child.match == 'regexp' %}
             {% if child.strings %}
             {% set strings = [] %}

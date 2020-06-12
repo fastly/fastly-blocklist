@@ -6,7 +6,7 @@ fastly-blocklist config and behavior is mostly defined by the lists you create. 
 
 1. allow
 
-    IP addresses added to an `allow` list are permitted access regardless of the other logic applied by fastly-blocklist. This is essentially a "global allowlist" you'd apply for trusted IP addresses which should _never_ get blocked. List items are IPv4 addresses and can include negation and CIDR notation e.g. `!10.0.0.0/8`.
+    IP addresses added to an `allow` list are permitted access regardless of the other logic applied by fastly-blocklist. This is essentially a "global allowlist" you'd apply for trusted IP addresses which should _never_ get blocked. List items are IPv4 or v6 addresses and can include negation and CIDR notation e.g. `!10.0.0.0/8`.
 
 1. geo
 
@@ -14,11 +14,11 @@ fastly-blocklist config and behavior is mostly defined by the lists you create. 
 
 1. block
 
-    IPs in `block` lists are permanently denied access to the service (assuming list `action` is also set to block). This is the most traditional type of [ACL](https://docs.fastly.com/en/guides/about-acls) or "blocklist" we use. List items are IPv4 addresses and can include negation and CIDR notation e.g. `172.16.0.0/12`.
+    IPs in `block` lists are permanently denied access to the service (assuming list `action` is also set to block). This is the most traditional type of [ACL](https://docs.fastly.com/en/guides/about-acls) or "blocklist" we use. List items are IPv4 or v6 addresses and can include negation and CIDR notation e.g. `172.16.0.0/12`.
 
 1. temp
 
-    `temp` lists are used to temporarily block access from a set of IPs. These entries are no longer enforced after the list's `block_length` has elapsed and are best used as a dynamic reputation list or to reduce the impact of blocking a public IP address. List items are IPv4 addresses only and _cannot_ include negation or CIDR.
+    `temp` lists are used to temporarily block access from a set of IPs. These entries are no longer enforced after the list's `block_length` has elapsed and are best used as a dynamic reputation list or to reduce the impact of blocking a public IP address. List items are IPv4 or v6 addresses only and _cannot_ include negation or CIDR.
 
 1. var
 
