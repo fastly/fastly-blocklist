@@ -65,11 +65,19 @@ class StateTests(unittest.TestCase):
                     'items': [
                         {
                             'comment': '',
-                            'subnet': 32,
+                            'subnet': 8,
+                            'service_id': 'REMOTESERVICEID',
+                            'negated': '1',
+                            'deleted_at': None,
+                            'ip': '10.0.0.0'
+                        },
+                        {
+                            'comment': '',
+                            'subnet': None,
                             'service_id': 'REMOTESERVICEID',
                             'negated': '0',
                             'deleted_at': None,
-                            'ip': '10.0.0.1'
+                            'ip': '2a04:4e42:10::313'
                         }
                     ]
                 }
@@ -102,7 +110,11 @@ class StateTests(unittest.TestCase):
         )
         self.assertEqual(
             env.config['lists'][0]['items'][0],
-            '10.0.0.1/32'
+            '!10.0.0.0/8'
+        )
+        self.assertEqual(
+            env.config['lists'][0]['items'][1],
+            '2a04:4e42:10::313/128'
         )
 
     def test_commit(self):
@@ -119,17 +131,21 @@ class StateTests(unittest.TestCase):
         self.args.variable = None
         self.args.block_length = None
 
+        # create a new environment, populate it with our list
+        env = Environment(self.args)
+        env.mock_remote = True
+        Lists(self.args, env)
+
+        # add items to the list
         self.args.add = True
         self.args.remove = False
         self.args.clean = False
         self.args.removeall = False
         self.args.item = ['!10.0.0.0/8']
         self.args.file = None
+        Items(self.args, env)
 
-        # create a new environment, populate it with our list and item
-        env = Environment(self.args)
-        env.mock_remote = True
-        Lists(self.args, env)
+        self.args.item = ['2a04:4e42:10::313/128']
         Items(self.args, env)
 
         # commit to 'remote' service
@@ -165,6 +181,18 @@ class StateTests(unittest.TestCase):
         self.assertEqual(
             env.to_remote['acls'][0]['items'][0]['subnet'],
             8
+        )
+        self.assertEqual(
+            env.to_remote['acls'][0]['items'][1]['ip'],
+            '2a04:4e42:10::313'
+        )
+        self.assertEqual(
+            env.to_remote['acls'][0]['items'][1]['negated'],
+            '0'
+        )
+        self.assertEqual(
+            env.to_remote['acls'][0]['items'][1]['subnet'],
+            128
         )
 
     def test_save(self):

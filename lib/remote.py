@@ -210,10 +210,11 @@ class Remote():
             ).clone()
             version_new = response['number']
             env.to_remote['version'] = version_new
-        except BaseException:
+
+        except BaseException as e:
             exit(f'Error: could not clone active version: {version_old} '
-                 f'for service: {sid}'
-                 f'Response: {response}'
+                 f'for service: {sid}.\n'
+                 f'Exception: {e}'
                  )
 
         print(f'\t\tCreated new version: {version_new} from active version: '
@@ -233,10 +234,10 @@ class Remote():
                 service_id=sid,
                 version=version
             ).activate()
-        except BaseException:
+        except BaseException as e:
             exit(f'Error: could not activate version: {version} for '
-                 f'service: {sid}.'
-                 f'Response: {response}'
+                 f'service: {sid}.\n'
+                 f'Exception: {e}'
                  )
 
         print(f'\tDeployed version: {version} for service: {sid}')
@@ -401,10 +402,10 @@ class Remote():
                                              body=body,
                                              headers=headers
                                              )
-        except BaseException:
+        except BaseException as e:
             exit(f'Error: could not add acl name: {name} to '
-                 f'service: {sid} version: {version}.'
-                 f'Response : {response}'
+                 f'service: {sid} version: {version}.\n'
+                 f'Exception: {e}'
                  )
 
         print(f'\t\tAdded new acl: {name}')
@@ -518,10 +519,10 @@ class Remote():
                                                  body=body,
                                                  headers=headers
                                                  )[1]
-        except BaseException:
+        except BaseException as e:
             exit(f'Error: Couldn\'t update acl for service: '
-                 f'{sid} acl name: {name} '
-                 f'Response: {response}'
+                 f'{sid} acl name: {name}.\n'
+                 f'Exception: {e}'
                  )
 
         print(f'\t\tUpdated acl name: {name}')
@@ -571,10 +572,10 @@ class Remote():
                                              body=body,
                                              headers=headers
                                              )[1]
-        except BaseException:
+        except BaseException as e:
             exit(f'Error: could not add dict name: {name} to '
-                 f'service: {sid} version: {version}. '
-                 f'Response : {response}'
+                 f'service: {sid} version: {version}.\n'
+                 f'Exception: {e}'
                  )
 
         print(f'\t\tAdded new dict: {name}')
@@ -685,10 +686,10 @@ class Remote():
                                                  body=body,
                                                  headers=headers
                                                  )[1]
-        except BaseException:
+        except BaseException as e:
             exit(f'Error: Couldn\'t update dict for service: '
-                 f'{sid} dict name: {name} '
-                 f'Response: {response}'
+                 f'{sid} dict name: {name}.\n'
+                 f'Exception: {e}'
                  )
 
         print(f'\t\tUpdated dict name: {name}')
