@@ -69,7 +69,7 @@ $ pipenv shell
 
 ### Local installation with pip
 
-`fastly-blocklist` requires python >= 3.6. You can install dependencies with pip & run with your system python 3 like so:
+`fastly-blocklist` requires python >= 3.7. You can install dependencies with pip & run with your system python 3 like so:
 
 ```
 pip3 install --user -r requirements.txt
