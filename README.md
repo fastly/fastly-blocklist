@@ -1,5 +1,5 @@
 ![](https://github.com/fastly/fastly-blocklist/workflows/prerelease/badge.svg)
-![](https://github.com/fastly/fastly-blocklist/workflows/master/badge.svg)
+![](https://github.com/fastly/fastly-blocklist/workflows/main/badge.svg)
 
 # fastly-blocklist
 
