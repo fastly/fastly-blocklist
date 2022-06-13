@@ -47,7 +47,7 @@ def main(args):
 
 if __name__ == '__main__':
 
-    version = 'master'
+    version = 'main'
 
     PARSER = ArgumentParser(formatter_class=RawTextHelpFormatter, description=(
             f'\n# fastly-blocklist # version: {version}\n'

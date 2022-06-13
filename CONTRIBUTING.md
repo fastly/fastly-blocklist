@@ -1,7 +1,7 @@
 # Contributing
 We welcome community contributions to this repository. To help add functionality or address issues please take the following steps:
 
-* Fork the repository from the master branch.
+* Fork the repository from the main branch.
 * Create a new branch for your features / fixes.
 * Make the changes you wish to see.
 * Add [tests](tests) for your changes.
@@ -13,4 +13,4 @@ We welcome community contributions to this repository. To help add functionality
     * Explanation of new behaviour
     * Link to issue that is addressed.
     * Ensure documentation contains the correct information.
-* Pull requests will be reviewed and merged into master for a future release.
+* Pull requests will be reviewed and merged into main for a future release.
